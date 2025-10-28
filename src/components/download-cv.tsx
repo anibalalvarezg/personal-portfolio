@@ -7,16 +7,14 @@ export function DownloadCV() {
   const { t } = useI18n()
 
   const handleDownload = () => {
-    // Track download event (preparado para analytics)
     if (typeof window !== 'undefined' && 'gtag' in window) {
-      // @ts-ignore - gtag is added by Google Analytics
+      // @ts-ignore
       window.gtag('event', 'download', {
         event_category: 'CV',
         event_label: 'CV Download',
       })
     }
 
-    // Crear un link temporal y hacer click
     const link = document.createElement('a')
     link.href = '/Anibal_Alvarez.pdf'
     link.download = 'CV-Anibal-Alvarez-Gonzalez.pdf'

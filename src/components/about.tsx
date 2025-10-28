@@ -2,13 +2,15 @@
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { useI18n } from "@/lib/i18n";
+import { useScrollAnimation } from "@/hooks/use-scroll-animation";
 
 export function About() {
   const { t } = useI18n()
+  const cardRef = useScrollAnimation<HTMLDivElement>("scaleIn", { duration: 0.5 })
   
   return (
     <section className="mb-12" aria-labelledby="about-heading">
-      <Card className="shadow-sm hover:shadow-lg transition-all duration-300 border-t-4 border-t-primary/30">
+      <Card ref={cardRef} className="shadow-sm hover:shadow-lg transition-all duration-300 border-t-4 border-t-primary/30">
         <CardHeader>
           <div className="flex items-center gap-3">
             <div className="h-1 w-8 bg-gradient-to-r from-primary to-accent rounded-full" aria-hidden="true"></div>

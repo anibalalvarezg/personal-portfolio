@@ -123,7 +123,6 @@
     @apply bg-background text-foreground select-none;
   }
   
-  /* Clase para screen readers only */
   .sr-only {
     position: absolute;
     width: 1px;
@@ -147,14 +146,12 @@
     white-space: normal;
   }
   
-  /* Mejorar visibilidad de focus */
   *:focus-visible {
     outline: 2px solid hsl(var(--primary));
     outline-offset: 2px;
     border-radius: 4px;
   }
   
-  /* Preferencias de movimiento reducido */
   @media (prefers-reduced-motion: reduce) {
     *,
     *::before,

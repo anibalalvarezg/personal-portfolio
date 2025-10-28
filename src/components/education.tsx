@@ -4,6 +4,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { GraduationCap } from "lucide-react";
 import { useI18n } from "@/lib/i18n";
+import { useScrollAnimation } from "@/hooks/use-scroll-animation";
 
 interface Education {
   institution: string;
@@ -18,17 +19,19 @@ interface EducationProps {
 
 export function Education({ data }: EducationProps) {
   const { t } = useI18n()
+  const titleRef = useScrollAnimation<HTMLDivElement>("fadeInLeft", { duration: 0.5 })
+  const educationRef = useScrollAnimation<HTMLDivElement>("stagger", { duration: 0.5, stagger: 0.08 })
   
   return (
     <section className="mb-16" aria-labelledby="education-heading">
-      <div className="flex items-center gap-3 mb-8">
+      <div ref={titleRef} className="flex items-center gap-3 mb-8">
         <h2 id="education-heading" className="text-3xl font-bold tracking-tight">
           {t('education.title')}
         </h2>
         <div className="h-1 flex-1 max-w-20 bg-gradient-to-r from-primary to-transparent rounded-full" aria-hidden="true"></div>
       </div>
 
-      <div className="space-y-6">
+      <div ref={educationRef} className="space-y-6">
         {data.map((edu, index) => (
           <Card 
             key={index} 

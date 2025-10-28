@@ -3,6 +3,7 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { useI18n } from "@/lib/i18n";
+import { useScrollAnimation } from "@/hooks/use-scroll-animation";
 
 interface Experience {
   company: string;
@@ -17,20 +18,21 @@ interface ExperienceProps {
 
 export function Experience({ experiences }: ExperienceProps) {
   const { t } = useI18n()
+  const titleRef = useScrollAnimation<HTMLDivElement>("fadeInLeft", { duration: 0.5 })
+  const experiencesRef = useScrollAnimation<HTMLDivElement>("stagger", { duration: 0.5, stagger: 0.08 })
   
   return (
     <section className="mb-16" aria-labelledby="experience-heading">
-      <div className="flex items-center gap-3 mb-8">
+      <div ref={titleRef} className="flex items-center gap-3 mb-8">
         <h2 id="experience-heading" className="text-3xl font-bold tracking-tight">
           {t('experience.title')}
         </h2>
         <div className="h-1 flex-1 max-w-20 bg-gradient-to-r from-primary to-transparent rounded-full" aria-hidden="true"></div>
       </div>
 
-      <div className="space-y-6">
+      <div ref={experiencesRef} className="space-y-6">
         {experiences.map((exp, index) => (
           <article key={index} className="relative flex gap-6 group">
-            {/* Timeline line and dot */}
             <div className="hidden md:flex flex-col items-center" aria-hidden="true">
               <div className="w-4 h-4 rounded-full bg-primary shadow-lg group-hover:scale-125 transition-transform shrink-0 mt-6"></div>
               {index < experiences.length - 1 && (
@@ -38,7 +40,6 @@ export function Experience({ experiences }: ExperienceProps) {
               )}
             </div>
 
-            {/* Card content */}
             <Card className="flex-1 shadow-sm hover:shadow-lg transition-all duration-300 border-l-4 border-l-primary/20 hover:border-l-primary" role="article" aria-label={`Experiencia en ${exp.company}`}>
               <CardHeader>
                 <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-3">

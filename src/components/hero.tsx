@@ -7,6 +7,7 @@ import { ThemeToggle } from "@/components/theme-toggle";
 import { LanguageToggle } from "@/components/language-toggle";
 import { DownloadCV } from "@/components/download-cv";
 import { useI18n } from "@/lib/i18n";
+import { useScrollAnimation } from "@/hooks/use-scroll-animation";
 
 interface Contact {
   type: string;
@@ -83,18 +84,20 @@ const ContactLink = ({ contact }: { contact: Contact }) => {
 
 export function Hero({ data }: HeroProps) {
   const { t } = useI18n()
+  const heroRef = useScrollAnimation<HTMLDivElement>("fadeInUp", { duration: 0.6, start: "top 90%" })
+  const contactsRef = useScrollAnimation<HTMLElement>("stagger", { duration: 0.4, stagger: 0.06, start: "top 85%" })
   
   return (
     <section className="mb-8 relative" aria-label="Información personal">
       <div className="absolute inset-0 -z-10 bg-gradient-to-br from-primary/5 via-transparent to-accent/5 rounded-3xl blur-3xl" aria-hidden="true"></div>
       
-      <div className="absolute top-0 right-0 flex gap-2">
+      <div className="absolute top-0 right-0 flex gap-2 z-10">
         <DownloadCV />
         <LanguageToggle />
         <ThemeToggle />
       </div>
       
-      <div className="space-y-6 py-8">
+      <div ref={heroRef} className="space-y-6 pt-14 pb-8">
         <div className="space-y-4">
           <h1 className="text-5xl md:text-6xl font-bold tracking-tight bg-gradient-to-r from-foreground to-foreground/70 bg-clip-text text-transparent">
             {data.name}
@@ -109,7 +112,7 @@ export function Hero({ data }: HeroProps) {
 
         <Separator className="my-6" aria-hidden="true" />
 
-        <nav className="flex flex-wrap gap-6" aria-label="Información de contacto">
+        <nav ref={contactsRef} className="flex flex-wrap gap-6" aria-label="Información de contacto">
           {data.contacts.map((contact) => (
             <ContactLink key={contact.type} contact={contact} />
           ))}
