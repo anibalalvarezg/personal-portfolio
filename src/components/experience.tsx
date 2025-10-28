@@ -1,5 +1,8 @@
+"use client"
+
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { useI18n } from "@/lib/i18n";
 
 interface Experience {
   company: string;
@@ -13,11 +16,13 @@ interface ExperienceProps {
 }
 
 export function Experience({ experiences }: ExperienceProps) {
+  const { t } = useI18n()
+  
   return (
     <section className="mb-16" aria-labelledby="experience-heading">
       <div className="flex items-center gap-3 mb-8">
         <h2 id="experience-heading" className="text-3xl font-bold tracking-tight">
-          Experiencia Profesional
+          {t('experience.title')}
         </h2>
         <div className="h-1 flex-1 max-w-20 bg-gradient-to-r from-primary to-transparent rounded-full" aria-hidden="true"></div>
       </div>

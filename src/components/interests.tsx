@@ -1,15 +1,20 @@
+"use client"
+
 import { Badge } from "@/components/ui/badge";
+import { useI18n } from "@/lib/i18n";
 
 interface InterestsProps {
   areas: string[];
 }
 
 export function Interests({ areas }: InterestsProps) {
+  const { t } = useI18n()
+  
   return (
     <section className="mb-16" aria-labelledby="interests-heading">
       <div className="flex items-center gap-3 mb-8">
         <h2 id="interests-heading" className="text-3xl font-bold tracking-tight">
-          Áreas de Interés
+          {t('interests.title')}
         </h2>
         <div className="h-1 flex-1 max-w-20 bg-gradient-to-r from-primary to-transparent rounded-full" aria-hidden="true"></div>
       </div>

@@ -1,7 +1,11 @@
+"use client"
+
 import { Mail, Linkedin, Phone } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { ThemeToggle } from "@/components/theme-toggle";
+import { LanguageToggle } from "@/components/language-toggle";
+import { useI18n } from "@/lib/i18n";
 
 interface Contact {
   type: string;
@@ -11,7 +15,6 @@ interface Contact {
 interface HeroProps {
   data: {
     name: string;
-    title: string;
     contacts: Contact[];
   };
 }
@@ -73,11 +76,14 @@ const ContactLink = ({ contact }: { contact: Contact }) => {
 };
 
 export function Hero({ data }: HeroProps) {
+  const { t } = useI18n()
+  
   return (
     <section className="mb-8 relative" aria-label="Información personal">
       <div className="absolute inset-0 -z-10 bg-gradient-to-br from-primary/5 via-transparent to-accent/5 rounded-3xl blur-3xl" aria-hidden="true"></div>
       
-      <div className="absolute top-0 right-0">
+      <div className="absolute top-0 right-0 flex gap-2">
+        <LanguageToggle />
         <ThemeToggle />
       </div>
       
@@ -89,7 +95,7 @@ export function Hero({ data }: HeroProps) {
           <div className="flex items-center gap-3">
             <div className="h-1 w-12 bg-gradient-to-r from-primary to-accent rounded-full" aria-hidden="true"></div>
             <Badge variant="secondary" className="text-base px-5 py-1.5 font-medium shadow-sm hover:shadow-md transition-shadow" role="status">
-              {data.title}
+              {t('hero.title')}
             </Badge>
           </div>
         </div>

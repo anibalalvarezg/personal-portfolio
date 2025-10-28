@@ -1,0 +1,37 @@
+{
+  "hero": {
+    "title": "Ingeniero Civil en Informática"
+  },
+  "about": {
+    "title": "Sobre mí",
+    "summary": "Ingeniero Civil en Informática con experiencia en desarrollo web utilizando Angular, TypeScript y TailwindCSS. Apasionado por la innovación y la mejora continua, con habilidades en metodologias ágiles y trabajo en equipos multidisciplinarios. He participado en soluciones SaaS, proyectos de web scraping y aplicaciones web escalables en sectores como hoteleria, mineria y telecomunicaciones."
+  },
+  "experience": {
+    "title": "Experiencia Profesional"
+  },
+  "education": {
+    "title": "Educación"
+  },
+  "interests": {
+    "title": "Áreas de Interés"
+  },
+  "contact": {
+    "email": "Enviar correo a {email}",
+    "linkedin": "Ver perfil de LinkedIn en {url}",
+    "phone": "Llamar al {phone}"
+  },
+  "theme": {
+    "light": "Cambiar a modo claro",
+    "dark": "Cambiar a modo oscuro"
+  },
+  "language": {
+    "spanish": "Cambiar a español",
+    "english": "Cambiar a inglés"
+  },
+  "footer": {
+    "rights": "Todos los derechos reservados.",
+    "builtWith": "Construido con Next.js, TailwindCSS y shadcn/ui"
+  },
+  "skipToContent": "Saltar al contenido principal"
+}
+

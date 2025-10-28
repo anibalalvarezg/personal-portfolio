@@ -1,0 +1,37 @@
+{
+  "hero": {
+    "title": "Computer Engineering"
+  },
+  "about": {
+    "title": "About Me",
+    "summary": "Computer Engineer with experience in web development using Angular, TypeScript and TailwindCSS. Passionate about innovation and continuous improvement, with skills in agile methodologies and multidisciplinary teamwork. I have participated in SaaS solutions, web scraping projects and scalable web applications in sectors such as hospitality, mining and telecommunications."
+  },
+  "experience": {
+    "title": "Professional Experience"
+  },
+  "education": {
+    "title": "Education"
+  },
+  "interests": {
+    "title": "Areas of Interest"
+  },
+  "contact": {
+    "email": "Send email to {email}",
+    "linkedin": "View LinkedIn profile at {url}",
+    "phone": "Call {phone}"
+  },
+  "theme": {
+    "light": "Switch to light mode",
+    "dark": "Switch to dark mode"
+  },
+  "language": {
+    "spanish": "Switch to Spanish",
+    "english": "Switch to English"
+  },
+  "footer": {
+    "rights": "All rights reserved.",
+    "builtWith": "Built with Next.js, TailwindCSS and shadcn/ui"
+  },
+  "skipToContent": "Skip to main content"
+}
+
