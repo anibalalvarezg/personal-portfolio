@@ -46,10 +46,19 @@ export const personalData = {
     }
   ];
   
-  export const educationData = {
-    institution: "Pontificia Universidad Católica de Valparaíso", // [cite: 30]
-    degree: "Ingeniería Civil en Informática", // [cite: 31]
-    period: "2013 - 2018" // [cite: 35]
-  };
+  export const educationData = [
+    {
+      institution: "Pontificia Universidad Católica de Valparaíso",
+      degree: "Diplomado Data Science, Inteligencia artificial",
+      period: "2025",
+      description: "Machine Learning, Inteligencia Artificial, Deep Learning (VERSIÓN 24)"
+    },
+    {
+      institution: "Pontificia Universidad Católica de Valparaíso",
+      degree: "Pregrado, Ingeniería Civil Informática",
+      period: "2013 - 2018",
+      description: ""
+    }
+  ];
   
-  export const interestAreas = ["Desarrollo Web", "Ciencia de Datos", "Inteligencia Artificial"]; //
+  export const interestAreas = ["Desarrollo Web", "Ciencia de Datos", "Inteligencia Artificial"];
