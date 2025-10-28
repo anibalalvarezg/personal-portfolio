@@ -4,6 +4,7 @@ export const personalDataEs = {
     { type: "email", value: "anibal.alvarezg@gmail.com" },
     { type: "linkedin", value: "linkedin.com/in/anibalalvarezg" },
     { type: "phone", value: "+56985218485" },
+    { type: "github", value: "github.com/anibalalvarezg" },
   ],
 };
 

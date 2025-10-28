@@ -1,6 +1,6 @@
 "use client"
 
-import { Mail, Linkedin, Phone } from "lucide-react";
+import { Mail, Linkedin, Phone, Github } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { ThemeToggle } from "@/components/theme-toggle";
@@ -27,6 +27,8 @@ const ContactIcon = ({ type }: { type: string }) => {
       return <Linkedin className="h-4 w-4" />;
     case "phone":
       return <Phone className="h-4 w-4" />;
+    case "github":
+      return <Github className="h-4 w-4" />;
     default:
       return null;
   }
@@ -41,6 +43,8 @@ const ContactLink = ({ contact }: { contact: Contact }) => {
         return `https://${contact.value}`;
       case "phone":
         return `tel:${contact.value}`;
+      case "github":
+        return `https://${contact.value}`;
       default:
         return "#";
     }
@@ -54,23 +58,24 @@ const ContactLink = ({ contact }: { contact: Contact }) => {
         return `Ver perfil de LinkedIn en ${contact.value}`;
       case "phone":
         return `Llamar al ${contact.value}`;
+      case "github":
+        return `Ver perfil de GitHub en ${contact.value}`;
       default:
         return contact.value;
     }
   };
 
+  const isExternal = contact.type === "linkedin" || contact.type === "github";
+
   return (
     <a
       href={getHref()}
-      target={contact.type === "linkedin" ? "_blank" : undefined}
-      rel={contact.type === "linkedin" ? "noopener noreferrer" : undefined}
+      target={isExternal ? "_blank" : undefined}
+      rel={isExternal ? "noopener noreferrer" : undefined}
       aria-label={getAriaLabel()}
-      className="flex items-center gap-2 text-sm text-muted-foreground hover:text-primary transition-all hover:scale-105 group focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary rounded-lg"
+      className="p-3 rounded-lg bg-secondary hover:bg-primary/10 text-muted-foreground hover:text-primary transition-all hover:scale-110 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary shadow-sm hover:shadow-md"
     >
-      <div className="p-2 rounded-lg bg-secondary group-hover:bg-primary/10 transition-colors" aria-hidden="true">
-        <ContactIcon type={contact.type} />
-      </div>
-      <span className="font-medium">{contact.value}</span>
+      <ContactIcon type={contact.type} />
     </a>
   );
 };
