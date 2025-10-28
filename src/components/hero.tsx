@@ -1,6 +1,7 @@
 import { Mail, Linkedin, Phone } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
+import { ThemeToggle } from "@/components/theme-toggle";
 
 interface Contact {
   type: string;
@@ -75,6 +76,10 @@ export function Hero({ data }: HeroProps) {
   return (
     <section className="mb-8 relative" aria-label="Información personal">
       <div className="absolute inset-0 -z-10 bg-gradient-to-br from-primary/5 via-transparent to-accent/5 rounded-3xl blur-3xl" aria-hidden="true"></div>
+      
+      <div className="absolute top-0 right-0">
+        <ThemeToggle />
+      </div>
       
       <div className="space-y-6 py-8">
         <div className="space-y-4">
