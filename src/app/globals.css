@@ -114,6 +114,11 @@
   * {
     @apply border-border outline-ring/50;
   }
+  
+  html {
+    scroll-behavior: smooth;
+  }
+  
   body {
     @apply bg-background text-foreground select-none;
   }
@@ -140,5 +145,24 @@
     overflow: visible;
     clip: auto;
     white-space: normal;
+  }
+  
+  /* Mejorar visibilidad de focus */
+  *:focus-visible {
+    outline: 2px solid hsl(var(--primary));
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+  
+  /* Preferencias de movimiento reducido */
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
   }
 }

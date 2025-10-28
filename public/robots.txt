@@ -1,0 +1,7 @@
+# *
+User-agent: *
+Allow: /
+
+# Sitemaps
+Sitemap: https://mi-portfolio.com/sitemap.xml
+
