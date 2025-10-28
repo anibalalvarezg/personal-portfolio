@@ -6,7 +6,7 @@ interface AboutProps {
 
 export function About({ summary }: AboutProps) {
   return (
-    <section className="mb-16" aria-labelledby="about-heading">
+    <section className="mb-12" aria-labelledby="about-heading">
       <Card className="shadow-sm hover:shadow-lg transition-all duration-300 border-t-4 border-t-primary/30">
         <CardHeader>
           <div className="flex items-center gap-3">

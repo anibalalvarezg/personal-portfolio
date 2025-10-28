@@ -73,7 +73,7 @@ const ContactLink = ({ contact }: { contact: Contact }) => {
 
 export function Hero({ data }: HeroProps) {
   return (
-    <section className="mb-16 relative" aria-label="Información personal">
+    <section className="mb-8 relative" aria-label="Información personal">
       <div className="absolute inset-0 -z-10 bg-gradient-to-br from-primary/5 via-transparent to-accent/5 rounded-3xl blur-3xl" aria-hidden="true"></div>
       
       <div className="space-y-6 py-8">
