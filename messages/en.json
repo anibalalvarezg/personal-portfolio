@@ -20,6 +20,10 @@
     "linkedin": "View LinkedIn profile at {url}",
     "phone": "Call {phone}"
   },
+  "cv": {
+    "downloadButton": "Download CV",
+    "download": "Download curriculum vitae in PDF format"
+  },
   "theme": {
     "light": "Switch to light mode",
     "dark": "Switch to dark mode"

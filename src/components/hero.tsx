@@ -5,6 +5,7 @@ import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { LanguageToggle } from "@/components/language-toggle";
+import { DownloadCV } from "@/components/download-cv";
 import { useI18n } from "@/lib/i18n";
 
 interface Contact {
@@ -88,6 +89,7 @@ export function Hero({ data }: HeroProps) {
       <div className="absolute inset-0 -z-10 bg-gradient-to-br from-primary/5 via-transparent to-accent/5 rounded-3xl blur-3xl" aria-hidden="true"></div>
       
       <div className="absolute top-0 right-0 flex gap-2">
+        <DownloadCV />
         <LanguageToggle />
         <ThemeToggle />
       </div>
