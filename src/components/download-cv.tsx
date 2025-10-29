@@ -2,18 +2,16 @@
 
 import { Download } from "lucide-react"
 import { useI18n } from "@/lib/i18n"
+import { track } from "@vercel/analytics"
 
 export function DownloadCV() {
   const { t } = useI18n()
 
   const handleDownload = () => {
-    if (typeof window !== 'undefined' && 'gtag' in window) {
-      // @ts-ignore
-      window.gtag('event', 'download', {
-        event_category: 'CV',
-        event_label: 'CV Download',
-      })
-    }
+    track('cv_download', {
+      location: 'hero_section',
+      file: 'CV-Anibal-Alvarez-Gonzalez.pdf'
+    })
 
     const link = document.createElement('a')
     link.href = '/Anibal_Alvarez.pdf'
