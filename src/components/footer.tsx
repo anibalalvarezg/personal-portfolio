@@ -14,7 +14,7 @@ export function Footer() {
         <p className="text-sm text-muted-foreground">
           © {currentYear} Aníbal Álvarez González. {t('footer.rights')}
         </p>
-        <p className="text-xs text-muted-foreground/60">
+        <p className="text-xs text-muted-foreground">
           {t('footer.builtWith')}
         </p>
       </div>

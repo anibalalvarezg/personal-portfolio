@@ -16,7 +16,7 @@ export function LanguageToggle() {
       title={locale === "es" ? "Switch to English" : "Cambiar a español"}
     >
       <Languages className="h-5 w-5 text-foreground" aria-hidden="true" />
-      <span className="absolute -bottom-1 -right-1 text-[10px] font-bold bg-primary text-primary-foreground rounded-full w-4 h-4 flex items-center justify-center" aria-hidden="true">
+      <span className="absolute -bottom-1 -right-1 text-[11px] font-bold bg-primary text-primary-foreground rounded-full w-5 h-5 flex items-center justify-center shadow-sm" aria-hidden="true">
         {locale.toUpperCase()}
       </span>
       <span className="sr-only">{locale === "es" ? t("language.english") : t("language.spanish")}</span>
