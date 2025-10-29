@@ -119,6 +119,7 @@ export function Hero({ data }: HeroProps) {
             <Badge variant="secondary" className="text-base px-5 py-1.5 font-medium shadow-sm hover:shadow-md transition-shadow" role="status">
               {t('hero.title')}
             </Badge>
+            <div className="h-1 flex-1 max-w-20 bg-gradient-to-r from-primary to-transparent rounded-full" aria-hidden="true"></div>
           </div>
         </div>
 
