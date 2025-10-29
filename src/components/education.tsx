@@ -5,6 +5,7 @@ import { Badge } from "@/components/ui/badge";
 import { GraduationCap } from "lucide-react";
 import { useI18n } from "@/lib/i18n";
 import { useScrollAnimation } from "@/hooks/use-scroll-animation";
+import { highlightTechnologies } from "@/lib/highlight-tech";
 
 interface Education {
   institution: string;
@@ -65,7 +66,7 @@ export function Education({ data }: EducationProps) {
             {edu.description && (
               <CardContent>
                 <p className="text-sm text-muted-foreground leading-relaxed">
-                  {edu.description}
+                  {highlightTechnologies(edu.description)}
                 </p>
               </CardContent>
             )}

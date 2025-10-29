@@ -4,6 +4,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { useI18n } from "@/lib/i18n";
 import { useScrollAnimation } from "@/hooks/use-scroll-animation";
+import { highlightTechnologies } from "@/lib/highlight-tech";
 
 interface Experience {
   company: string;
@@ -63,7 +64,7 @@ export function Experience({ experiences }: ExperienceProps) {
                       key={descIndex}
                       className="text-sm text-muted-foreground leading-relaxed pl-6 relative before:content-[''] before:absolute before:left-0 before:top-2 before:w-2 before:h-2 before:rounded-full before:bg-primary/60"
                     >
-                      {desc}
+                      {highlightTechnologies(desc)}
                     </li>
                   ))}
                 </ul>
