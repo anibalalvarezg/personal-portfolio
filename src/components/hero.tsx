@@ -69,6 +69,18 @@ const ContactLink = ({ contact }: { contact: Contact }) => {
 
   const isExternal = contact.type === "linkedin" || contact.type === "github";
 
+  if (contact.type === "phone") {
+    return (
+      <a
+        href={getHref()}
+        aria-label={getAriaLabel()}
+        className="md:hidden p-3 rounded-lg bg-secondary hover:bg-primary/10 text-muted-foreground hover:text-primary transition-all hover:scale-110 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary shadow-sm hover:shadow-md"
+      >
+        <ContactIcon type={contact.type} />
+      </a>
+    );
+  }
+
   return (
     <a
       href={getHref()}
