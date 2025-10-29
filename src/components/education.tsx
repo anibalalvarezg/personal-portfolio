@@ -39,7 +39,7 @@ export function Education({ data }: EducationProps) {
             role="article" 
             aria-label={`Formación académica: ${edu.degree}`}
           >
-            <div className="flex items-start gap-4 mb-3">
+            <div className="flex items-start gap-4">
               <div className="p-3 rounded-xl bg-gradient-to-br from-primary/10 to-accent/10 group-hover:from-primary/20 group-hover:to-accent/20 transition-colors shadow-sm" aria-hidden="true">
                 <GraduationCap className="h-7 w-7 text-primary" />
               </div>
@@ -60,11 +60,6 @@ export function Education({ data }: EducationProps) {
                 {edu.period}
               </Badge>
             </div>
-            {edu.description && (
-              <p className="text-sm text-muted-foreground leading-relaxed pl-[4.5rem]">
-                {highlightTechnologies(edu.description)}
-              </p>
-            )}
           </article>
         ))}
       </div>
