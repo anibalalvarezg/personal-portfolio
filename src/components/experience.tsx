@@ -1,6 +1,5 @@
 "use client"
 
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { useI18n } from "@/lib/i18n";
 import { useScrollAnimation } from "@/hooks/use-scroll-animation";
@@ -41,35 +40,31 @@ export function Experience({ experiences }: ExperienceProps) {
               )}
             </div>
 
-            <Card className="flex-1 shadow-sm hover:shadow-lg transition-all duration-300 border-l-4 border-l-primary/20 hover:border-l-primary" role="article" aria-label={`Experiencia en ${exp.company}`}>
-              <CardHeader>
-                <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-3">
-                  <div className="space-y-1">
-                    <CardTitle className="text-xl group-hover:text-primary transition-colors">
-                      {exp.company}
-                    </CardTitle>
-                    <p className="text-sm font-medium text-muted-foreground">
-                      {exp.role}
-                    </p>
-                  </div>
-                  <Badge variant="outline" className="w-fit shadow-sm bg-primary/5 border-primary/20" role="status" aria-label={`Período: ${exp.period}`}>
-                    {exp.period}
-                  </Badge>
+            <div className="flex-1">
+              <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-3 mb-4">
+                <div className="space-y-1">
+                  <h3 className="text-xl font-bold group-hover:text-primary transition-colors">
+                    {exp.company}
+                  </h3>
+                  <p className="text-sm font-medium text-muted-foreground">
+                    {exp.role}
+                  </p>
                 </div>
-              </CardHeader>
-              <CardContent>
-                <ul className="space-y-3" aria-label="Responsabilidades y logros">
-                  {exp.descriptions.map((desc, descIndex) => (
-                    <li
-                      key={descIndex}
-                      className="text-sm text-muted-foreground leading-relaxed pl-6 relative before:content-[''] before:absolute before:left-0 before:top-2 before:w-2 before:h-2 before:rounded-full before:bg-primary/60"
-                    >
-                      {highlightTechnologies(desc)}
-                    </li>
-                  ))}
-                </ul>
-              </CardContent>
-            </Card>
+                <Badge variant="outline" className="w-fit shadow-sm bg-primary/5 border-primary/20" role="status" aria-label={`Período: ${exp.period}`}>
+                  {exp.period}
+                </Badge>
+              </div>
+              <ul className="space-y-3" aria-label="Responsabilidades y logros">
+                {exp.descriptions.map((desc, descIndex) => (
+                  <li
+                    key={descIndex}
+                    className="text-sm text-muted-foreground leading-relaxed pl-6 relative before:content-[''] before:absolute before:left-0 before:top-2 before:w-2 before:h-2 before:rounded-full before:bg-primary/60"
+                  >
+                    {highlightTechnologies(desc)}
+                  </li>
+                ))}
+              </ul>
+            </div>
           </article>
         ))}
       </div>

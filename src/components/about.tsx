@@ -1,28 +1,25 @@
 "use client"
 
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { useI18n } from "@/lib/i18n";
 import { useScrollAnimation } from "@/hooks/use-scroll-animation";
+import { highlightTechnologies } from "@/lib/highlight-tech";
 
 export function About() {
   const { t } = useI18n()
-  const cardRef = useScrollAnimation<HTMLDivElement>("scaleIn", { duration: 0.5 })
+  const titleRef = useScrollAnimation<HTMLDivElement>("fadeInLeft", { duration: 0.5 })
+  const contentRef = useScrollAnimation<HTMLParagraphElement>("fadeInUp", { duration: 0.5, start: "top 90%" })
   
   return (
-    <section className="mb-12" aria-labelledby="about-heading">
-      <Card ref={cardRef} className="shadow-sm hover:shadow-lg transition-all duration-300 border-t-4 border-t-primary/30">
-        <CardHeader>
-          <div className="flex items-center gap-3">
-            <div className="h-1 w-8 bg-gradient-to-r from-primary to-accent rounded-full" aria-hidden="true"></div>
-            <CardTitle id="about-heading" className="text-2xl">{t('about.title')}</CardTitle>
-          </div>
-        </CardHeader>
-        <CardContent>
-          <p className="text-muted-foreground leading-relaxed text-base">
-            {t('about.summary')}
-          </p>
-        </CardContent>
-      </Card>
+    <section className="mb-16" aria-labelledby="about-heading">
+      <div ref={titleRef} className="flex items-center gap-3 mb-8">
+        <h2 id="about-heading" className="text-3xl font-bold tracking-tight">
+          {t('about.title')}
+        </h2>
+        <div className="h-1 flex-1 max-w-20 bg-gradient-to-r from-primary to-transparent rounded-full" aria-hidden="true"></div>
+      </div>
+      <p ref={contentRef} className="text-muted-foreground leading-relaxed text-base">
+        {highlightTechnologies(t('about.summary'))}
+      </p>
     </section>
   );
 }

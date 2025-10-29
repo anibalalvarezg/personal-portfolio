@@ -1,6 +1,5 @@
 "use client"
 
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { GraduationCap } from "lucide-react";
 import { useI18n } from "@/lib/i18n";
@@ -34,43 +33,39 @@ export function Education({ data }: EducationProps) {
 
       <div ref={educationRef} className="space-y-6">
         {data.map((edu, index) => (
-          <Card 
+          <article 
             key={index} 
-            className="shadow-sm hover:shadow-lg transition-all duration-300 group border-l-4 border-l-accent/30 hover:border-l-accent" 
+            className="group"
             role="article" 
             aria-label={`Formación académica: ${edu.degree}`}
           >
-            <CardHeader>
-              <div className="flex items-start gap-4">
-                <div className="p-3 rounded-xl bg-gradient-to-br from-primary/10 to-accent/10 group-hover:from-primary/20 group-hover:to-accent/20 transition-colors shadow-sm" aria-hidden="true">
-                  <GraduationCap className="h-7 w-7 text-primary" />
-                </div>
-                <div className="flex-1">
-                  <CardTitle className="text-xl group-hover:text-primary transition-colors">
-                    {edu.degree}
-                  </CardTitle>
-                  <p className="text-sm font-medium text-muted-foreground mt-2">
-                    {edu.institution}
-                  </p>
-                </div>
-                <Badge 
-                  variant="outline" 
-                  className="shadow-sm bg-accent/5 border-accent/20" 
-                  role="status" 
-                  aria-label={`Período: ${edu.period}`}
-                >
-                  {edu.period}
-                </Badge>
+            <div className="flex items-start gap-4 mb-3">
+              <div className="p-3 rounded-xl bg-gradient-to-br from-primary/10 to-accent/10 group-hover:from-primary/20 group-hover:to-accent/20 transition-colors shadow-sm" aria-hidden="true">
+                <GraduationCap className="h-7 w-7 text-primary" />
               </div>
-            </CardHeader>
-            {edu.description && (
-              <CardContent>
-                <p className="text-sm text-muted-foreground leading-relaxed">
-                  {highlightTechnologies(edu.description)}
+              <div className="flex-1">
+                <h3 className="text-xl font-bold group-hover:text-primary transition-colors">
+                  {edu.degree}
+                </h3>
+                <p className="text-sm font-medium text-muted-foreground mt-2">
+                  {edu.institution}
                 </p>
-              </CardContent>
+              </div>
+              <Badge 
+                variant="outline" 
+                className="shadow-sm bg-accent/5 border-accent/20" 
+                role="status" 
+                aria-label={`Período: ${edu.period}`}
+              >
+                {edu.period}
+              </Badge>
+            </div>
+            {edu.description && (
+              <p className="text-sm text-muted-foreground leading-relaxed pl-[4.5rem]">
+                {highlightTechnologies(edu.description)}
+              </p>
             )}
-          </Card>
+          </article>
         ))}
       </div>
     </section>
