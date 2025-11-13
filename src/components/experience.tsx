@@ -1,5 +1,6 @@
 "use client"
 
+import { motion } from "framer-motion";
 import { Badge } from "@/components/ui/badge";
 import { useI18n } from "@/lib/i18n";
 import { useScrollAnimation } from "@/hooks/use-scroll-animation";
@@ -18,28 +19,67 @@ interface ExperienceProps {
 
 export function Experience({ experiences }: ExperienceProps) {
   const { t } = useI18n()
-  const titleRef = useScrollAnimation<HTMLDivElement>("fadeInLeft", { duration: 0.5 })
-  const experiencesRef = useScrollAnimation<HTMLDivElement>("stagger", { duration: 0.5, stagger: 0.08 })
+  const { ref: titleRef, isInView: titleInView } = useScrollAnimation<HTMLDivElement>("fadeInLeft")
+  const { ref: experiencesRef, isInView: experiencesInView } = useScrollAnimation<HTMLDivElement>("stagger")
   
   return (
     <section className="mb-16" aria-labelledby="experience-heading">
-      <div ref={titleRef} className="flex items-center gap-3 mb-8">
+      {/* Section title with animation */}
+      <motion.div 
+        ref={titleRef}
+        initial={{ opacity: 0, x: -30 }}
+        animate={titleInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -30 }}
+        transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+        className="flex items-center gap-3 mb-8"
+      >
         <h2 id="experience-heading" className="text-3xl font-bold tracking-tight">
           {t('experience.title')}
         </h2>
         <div className="h-1 flex-1 max-w-20 bg-gradient-to-r from-primary to-transparent rounded-full" aria-hidden="true"></div>
-      </div>
+      </motion.div>
 
+      {/* Experience items with stagger animation */}
       <div ref={experiencesRef} className="space-y-6">
         {experiences.map((exp, index) => (
-          <article key={index} className="relative flex gap-6 group">
+          <motion.article
+            key={index}
+            initial={{ opacity: 0, y: 20 }}
+            animate={experiencesInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+            transition={{ 
+              duration: 0.6, 
+              delay: index * 0.12,
+              ease: [0.22, 1, 0.36, 1]
+            }}
+            className="relative flex gap-6 group"
+          >
+            {/* Timeline */}
             <div className="hidden md:flex flex-col items-center" aria-hidden="true">
-              <div className="w-4 h-4 rounded-full bg-primary shadow-lg group-hover:scale-125 transition-transform shrink-0 mt-6"></div>
+              <motion.div 
+                initial={{ scale: 0 }}
+                animate={experiencesInView ? { scale: 1 } : { scale: 0 }}
+                transition={{ 
+                  duration: 0.5, 
+                  delay: index * 0.12 + 0.2,
+                  ease: [0.22, 1, 0.36, 1]
+                }}
+                className="w-4 h-4 rounded-full bg-primary shadow-lg group-hover:scale-125 transition-transform shrink-0 mt-6"
+              ></motion.div>
               {index < experiences.length - 1 && (
-                <div className="w-0.5 h-full bg-gradient-to-b from-primary to-primary/20 mt-2"></div>
+                <motion.div 
+                  initial={{ scaleY: 0 }}
+                  animate={experiencesInView ? { scaleY: 1 } : { scaleY: 0 }}
+                  transition={{ 
+                    duration: 0.6, 
+                    delay: index * 0.12 + 0.4,
+                    ease: [0.22, 1, 0.36, 1]
+                  }}
+                  style={{ originY: 0 }}
+                  className="w-0.5 h-full bg-gradient-to-b from-primary to-primary/20 mt-2"
+                ></motion.div>
               )}
             </div>
 
+            {/* Content */}
             <div className="flex-1">
               <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-3 mb-4">
                 <div className="space-y-1">
@@ -65,10 +105,9 @@ export function Experience({ experiences }: ExperienceProps) {
                 ))}
               </ul>
             </div>
-          </article>
+          </motion.article>
         ))}
       </div>
     </section>
   );
 }
-
