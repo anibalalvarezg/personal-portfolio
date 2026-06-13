@@ -1,16 +1,18 @@
 "use client"
 
-import { useRef } from "react"
-import { motion, useInView } from "framer-motion"
+import { motion } from "framer-motion"
 import { useLocalizedData } from "@/lib/use-localized-data"
 import { useI18n } from "@/lib/i18n"
+import { useReducedMotion } from "@/hooks/use-reduced-motion"
 
 function SkillTag({ name, delay }: { name: string; delay: number }) {
+  const reducedMotion = useReducedMotion()
+
   return (
     <motion.span
-      initial={{ opacity: 0, y: 10 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
+      initial={reducedMotion ? undefined : { opacity: 0, y: 10 }}
+      whileInView={reducedMotion ? undefined : { opacity: 1, y: 0 }}
+      viewport={{ once: true, amount: 0.5 }}
       transition={{ duration: 0.4, delay, ease: [0.22, 1, 0.36, 1] }}
       className="inline-flex items-center px-4 py-2 rounded-lg text-sm font-medium bg-[rgba(148,163,184,0.08)] text-[#94a3b8] border border-[rgba(148,163,184,0.1)] hover:border-[rgba(6,182,212,0.3)] hover:text-[#06b6d4] hover:shadow-[0_0_12px_rgba(6,182,212,0.08)] transition-all cursor-default"
     >
@@ -22,21 +24,20 @@ function SkillTag({ name, delay }: { name: string; delay: number }) {
 export function Skills() {
   const { skillsData } = useLocalizedData()
   const { t } = useI18n()
-  const sectionRef = useRef<HTMLElement>(null)
-  const isInView = useInView(sectionRef, { once: true, margin: "-100px" })
+  const reducedMotion = useReducedMotion()
 
   return (
     <section
       id="skills"
-      ref={sectionRef}
       className="py-24 md:py-32"
       aria-labelledby="skills-heading"
     >
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         {/* Section Header */}
         <motion.div
-          initial={{ opacity: 0, x: -30 }}
-          animate={isInView ? { opacity: 1, x: 0 } : {}}
+          initial={reducedMotion ? undefined : { opacity: 0, x: -30 }}
+          whileInView={reducedMotion ? undefined : { opacity: 1, x: 0 }}
+          viewport={{ once: true, amount: 0.5 }}
           transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
           className="flex items-center gap-3 mb-12"
         >
@@ -51,8 +52,9 @@ export function Skills() {
           {skillsData.categories.map((category, catIndex) => (
             <motion.div
               key={category.id}
-              initial={{ opacity: 0, y: 30 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              initial={reducedMotion ? undefined : { opacity: 0, y: 30 }}
+              whileInView={reducedMotion ? undefined : { opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.3 }}
               transition={{
                 duration: 0.7,
                 delay: catIndex * 0.1,
@@ -80,8 +82,9 @@ export function Skills() {
         {/* Additional Skills */}
         {skillsData.other && skillsData.other.length > 0 && (
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            initial={reducedMotion ? undefined : { opacity: 0, y: 30 }}
+            whileInView={reducedMotion ? undefined : { opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.5 }}
             transition={{ duration: 0.7, delay: 0.5, ease: [0.22, 1, 0.36, 1] }}
             className="mt-12"
           >
