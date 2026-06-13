@@ -1,13 +1,39 @@
 {
+  "nav": {
+    "projects": "Proyectos",
+    "publications": "Publicaciones",
+    "skills": "Tech Stack",
+    "experience": "Experiencia",
+    "about": "Sobre mí",
+    "contact": "Contacto",
+    "openMenu": "Abrir menú",
+    "closeMenu": "Cerrar menú"
+  },
   "hero": {
-    "title": "Ingeniero Civil en Informática"
+    "title": "Ingeniero Civil en Informática",
+    "ctaCv": "Descargar CV",
+    "ctaProjects": "Ver Proyectos",
+    "scrollDown": "Desplazar hacia abajo"
   },
   "about": {
     "title": "Sobre mí",
-    "summary": "Ingeniero Civil en Informática con experiencia en desarrollo web utilizando Angular, TypeScript y TailwindCSS. Apasionado por la innovación y la mejora continua, con habilidades en metodologias ágiles y trabajo en equipos multidisciplinarios. He participado en soluciones SaaS, proyectos de web scraping y aplicaciones web escalables en sectores como hoteleria, mineria y telecomunicaciones."
+    "educationTitle": "Educación",
+    "interestsTitle": "Áreas de interés",
+    "summary": "Desarrollador frontend con background en data engineering. Especializado en construir aplicaciones SaaS escalables, sistemas de scraping distribuidos y dashboards en tiempo real. Diplomado en Data Science e IA (2025)."
   },
   "experience": {
     "title": "Experiencia Profesional"
+  },
+  "projects": {
+    "title": "Proyectos Destacados",
+    "highlights": "Highlights"
+  },
+  "publications": {
+    "title": "Publicaciones"
+  },
+  "skills": {
+    "title": "Tech Stack",
+    "otherTitle": "Otras tecnologías"
   },
   "education": {
     "title": "Educación"
@@ -16,9 +42,12 @@
     "title": "Áreas de Interés"
   },
   "contact": {
+    "title": "Contacto",
     "email": "Enviar correo a {email}",
     "linkedin": "Ver perfil de LinkedIn en {url}",
-    "phone": "Llamar al {phone}"
+    "phone": "Llamar al {phone}",
+    "getInTouch": "Ponte en contacto",
+    "available": "Disponible para nuevas oportunidades"
   },
   "cv": {
     "downloadButton": "Descargar CV",
@@ -34,8 +63,7 @@
   },
   "footer": {
     "rights": "Todos los derechos reservados.",
-    "builtWith": "Construido con Next.js, TailwindCSS y shadcn/ui"
+    "builtWith": "Construido con Next.js, TailwindCSS, GSAP & Framer Motion"
   },
   "skipToContent": "Saltar al contenido principal"
 }
-

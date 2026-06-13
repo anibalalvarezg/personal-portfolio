@@ -1,22 +1,49 @@
 "use client"
 
 import { useI18n } from "./i18n"
-import { personalDataEs, professionalExperienceEs, educationDataEs, interestAreasEs } from "./data-es"
-import { personalDataEn, professionalExperienceEn, educationDataEn, interestAreasEn } from "./data-en"
+import { 
+  personalDataEs, 
+  professionalExperienceEs, 
+  educationDataEs, 
+  projectsDataEs,
+  publicationsDataEs,
+  interestAreasEs,
+  skillsTyping as skillsTypingEs,
+  skillsDataEs,
+} from "./data-es"
+import { 
+  personalDataEn, 
+  professionalExperienceEn, 
+  educationDataEn, 
+  projectsDataEn,
+  publicationsDataEn,
+  interestAreasEn,
+  skillsTyping as skillsTypingEn,
+  skillsDataEn,
+} from "./data-en"
 
 export function useLocalizedData() {
   const { locale } = useI18n()
   
-  const personalData = locale === 'es' ? personalDataEs : personalDataEn
-  const professionalExperience = locale === 'es' ? professionalExperienceEs : professionalExperienceEn
-  const educationData = locale === 'es' ? educationDataEs : educationDataEn
-  const interestAreas = locale === 'es' ? interestAreasEs : interestAreasEn
+  const isEs = locale === 'es'
+  
+  const personalData = isEs ? personalDataEs : personalDataEn
+  const professionalExperience = isEs ? professionalExperienceEs : professionalExperienceEn
+  const educationData = isEs ? educationDataEs : educationDataEn
+  const projectsData = isEs ? projectsDataEs : projectsDataEn
+  const publicationsData = isEs ? publicationsDataEs : publicationsDataEn
+  const interestAreas = isEs ? interestAreasEs : interestAreasEn
+  const skillsTyping = isEs ? skillsTypingEs : skillsTypingEn
+  const skillsData = isEs ? skillsDataEs : skillsDataEn
   
   return {
     personalData,
     professionalExperience,
     educationData,
-    interestAreas
+    projectsData,
+    publicationsData,
+    interestAreas,
+    skillsTyping,
+    skillsData,
   }
 }
-

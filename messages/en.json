@@ -1,13 +1,39 @@
 {
+  "nav": {
+    "projects": "Projects",
+    "publications": "Publications",
+    "skills": "Tech Stack",
+    "experience": "Experience",
+    "about": "About",
+    "contact": "Contact",
+    "openMenu": "Open menu",
+    "closeMenu": "Close menu"
+  },
   "hero": {
-    "title": "Computer Engineering"
+    "title": "Computer Engineer",
+    "ctaCv": "Download CV",
+    "ctaProjects": "View Projects",
+    "scrollDown": "Scroll down"
   },
   "about": {
     "title": "About Me",
-    "summary": "Computer Engineer with experience in web development using Angular, TypeScript and TailwindCSS. Passionate about innovation and continuous improvement, with skills in agile methodologies and multidisciplinary teamwork. I have participated in SaaS solutions, web scraping projects and scalable web applications in sectors such as hospitality, mining and telecommunications."
+    "educationTitle": "Education",
+    "interestsTitle": "Areas of Interest",
+    "summary": "Frontend developer with a background in data engineering. Specialized in building scalable SaaS applications, distributed scraping systems, and real-time dashboards. Diploma in Data Science & AI (2025)."
   },
   "experience": {
     "title": "Professional Experience"
+  },
+  "projects": {
+    "title": "Featured Projects",
+    "highlights": "Highlights"
+  },
+  "publications": {
+    "title": "Publications"
+  },
+  "skills": {
+    "title": "Tech Stack",
+    "otherTitle": "Other technologies"
   },
   "education": {
     "title": "Education"
@@ -16,9 +42,12 @@
     "title": "Areas of Interest"
   },
   "contact": {
+    "title": "Contact",
     "email": "Send email to {email}",
     "linkedin": "View LinkedIn profile at {url}",
-    "phone": "Call {phone}"
+    "phone": "Call {phone}",
+    "getInTouch": "Get in touch",
+    "available": "Available for new opportunities"
   },
   "cv": {
     "downloadButton": "Download CV",
@@ -34,8 +63,7 @@
   },
   "footer": {
     "rights": "All rights reserved.",
-    "builtWith": "Built with Next.js, TailwindCSS and shadcn/ui"
+    "builtWith": "Built with Next.js, TailwindCSS, GSAP & Framer Motion"
   },
   "skipToContent": "Skip to main content"
 }
-
