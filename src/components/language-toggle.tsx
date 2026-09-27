@@ -7,16 +7,8 @@ import { motion, AnimatePresence } from "framer-motion"
 
 export function LanguageToggle() {
   const { locale, setLocale, t } = useI18n()
-  const [isTransitioning, setIsTransitioning] = React.useState(false)
-
   const handleToggle = () => {
-    setIsTransitioning(true)
-    setTimeout(() => {
-      setLocale(locale === "es" ? "en" : "es")
-      setTimeout(() => {
-        setIsTransitioning(false)
-      }, 300)
-    }, 300)
+    setLocale(locale === "es" ? "en" : "es")
   }
 
   return (

@@ -8,7 +8,7 @@ import { LanguageToggle } from "./language-toggle"
 import { Menu, X } from "lucide-react"
 
 export function Navbar() {
-  const { t, locale } = useI18n()
+  const { t } = useI18n()
 
   const navLinks = [
     { href: "#proyectos", label: t("nav.projects") },

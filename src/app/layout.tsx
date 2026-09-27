@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter, Space_Grotesk } from "next/font/google";
+import localFont from "next/font/local";
 import "@/app/globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import { ReducedMotionProvider } from "@/components/reduced-motion-provider";
@@ -13,19 +13,20 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 gsap.registerPlugin(ScrollTrigger);
 
-const inter = Inter({ 
-  subsets: ["latin"],
+const inter = localFont({
+  src: "./fonts/inter-latin.woff2",
+  weight: "100 900",
   display: "swap",
   preload: true,
   variable: "--font-inter",
 });
 
-const spaceGrotesk = Space_Grotesk({
-  subsets: ["latin"],
+const spaceGrotesk = localFont({
+  src: "./fonts/space-grotesk-latin.woff2",
+  weight: "400 700",
   display: "swap",
   preload: true,
   variable: "--font-space-grotesk",
-  weight: ["400", "500", "600", "700"],
 });
 
 export const metadata: Metadata = {

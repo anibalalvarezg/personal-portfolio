@@ -24,18 +24,21 @@ export function Hero() {
   useEffect(() => {
     if (reducedMotion || !titleRef.current) return
 
-    const tl = gsap.timeline()
-    tl.from(titleRef.current, {
-      y: 60,
-      opacity: 0,
-      duration: 1.2,
-      ease: "power4.out",
-      delay: 0.3,
-    })
+    const context = gsap.context(() => {
+      gsap.fromTo(
+        titleRef.current,
+        { y: 60, opacity: 0 },
+        {
+          y: 0,
+          opacity: 1,
+          duration: 1.2,
+          ease: "power4.out",
+          delay: 0.3,
+        },
+      )
+    }, sectionRef)
 
-    return () => {
-      tl.kill()
-    }
+    return () => context.revert()
   }, [reducedMotion])
 
   const handleScrollToProjects = () => {

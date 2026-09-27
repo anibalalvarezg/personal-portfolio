@@ -1,6 +1,6 @@
 "use client"
 
-import React, { createContext, useContext, useState, useEffect } from 'react'
+import React, { createContext, useContext, useEffect, useState } from 'react'
 import esMessages from '../../messages/es.json'
 import enMessages from '../../messages/en.json'
 
@@ -22,28 +22,32 @@ const I18nContext = createContext<I18nContextType | undefined>(undefined)
 
 export function I18nProvider({ children }: { children: React.ReactNode }) {
   const [locale, setLocaleState] = useState<Locale>('es')
-  const [mounted, setMounted] = useState(false)
 
   useEffect(() => {
-    const savedLocale = localStorage.getItem('locale') as Locale
-    if (savedLocale && (savedLocale === 'es' || savedLocale === 'en')) {
-      setLocaleState(savedLocale)
-    }
-    setMounted(true)
+    const frame = window.requestAnimationFrame(() => {
+      const savedLocale = localStorage.getItem('locale')
+      if (savedLocale === 'es' || savedLocale === 'en') {
+        setLocaleState(savedLocale)
+        document.documentElement.lang = savedLocale
+      }
+    })
+
+    return () => window.cancelAnimationFrame(frame)
   }, [])
 
   const setLocale = (newLocale: Locale) => {
-    setLocaleState(newLocale)
     localStorage.setItem('locale', newLocale)
+    setLocaleState(newLocale)
     document.documentElement.lang = newLocale
   }
 
   const t = (key: string, params?: Record<string, string>): string => {
     const keys = key.split('.')
-    let value: any = messages[locale]
+    let value: unknown = messages[locale]
     
     for (const k of keys) {
-      value = value?.[k]
+      if (typeof value !== 'object' || value === null || !(k in value)) return key
+      value = (value as Record<string, unknown>)[k]
     }
     
     if (typeof value !== 'string') return key
@@ -72,4 +76,3 @@ export function useI18n() {
   }
   return context
 }
-

@@ -18,30 +18,26 @@ export function Experience() {
   useEffect(() => {
     if (!timelineRef.current) return
 
-    const triggers: ScrollTrigger[] = []
-    const items = timelineRef.current.querySelectorAll(".timeline-item")
-    
-    items.forEach((item, index) => {
-      const animation = gsap.from(item, {
-        scrollTrigger: {
-          trigger: item,
-          start: "top 85%",
-          toggleActions: "play none none none",
-        },
-        opacity: 0,
-        y: 40,
-        duration: 0.8,
-        delay: index * 0.1,
-        ease: "power3.out",
-      })
-      if (animation.scrollTrigger) {
-        triggers.push(animation.scrollTrigger)
-      }
-    })
+    const context = gsap.context(() => {
+      const items = timelineRef.current?.querySelectorAll(".timeline-item") ?? []
 
-    return () => {
-      triggers.forEach((trigger) => trigger.kill())
-    }
+      items.forEach((item, index) => {
+        gsap.from(item, {
+          scrollTrigger: {
+            trigger: item,
+            start: "top 85%",
+            toggleActions: "play none none none",
+          },
+          opacity: 0,
+          y: 40,
+          duration: 0.8,
+          delay: index * 0.1,
+          ease: "power3.out",
+        })
+      })
+    }, timelineRef)
+
+    return () => context.revert()
   }, [])
 
   return (

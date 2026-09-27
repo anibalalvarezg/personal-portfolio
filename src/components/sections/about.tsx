@@ -8,7 +8,7 @@ import { Badge } from "@/components/ui/badge"
 import { GraduationCap, MapPin } from "lucide-react"
 
 export function About() {
-  const { personalData, educationData, interestAreas } = useLocalizedData()
+  const { educationData, interestAreas } = useLocalizedData()
   const { t } = useI18n()
   const sectionRef = useRef<HTMLElement>(null)
   const isInView = useInView(sectionRef, { once: true, margin: "-100px" })

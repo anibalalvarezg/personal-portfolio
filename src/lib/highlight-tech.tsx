@@ -11,10 +11,7 @@ export function highlightTechnologies(text: string) {
   
   const parts = [];
   let lastIndex = 0;
-  let match;
-  
-  const tempText = text;
-  const matches = [...tempText.matchAll(regex)];
+  const matches = [...text.matchAll(regex)];
   
   matches.forEach((match, index) => {
     const matchStart = match.index!;
@@ -39,4 +36,3 @@ export function highlightTechnologies(text: string) {
   
   return parts.length > 0 ? parts : text;
 }
-

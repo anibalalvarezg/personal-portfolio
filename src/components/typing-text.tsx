@@ -25,11 +25,11 @@ export function TypingText({
   const [isDeleting, setIsDeleting] = useState(false)
   const [isPaused, setIsPaused] = useState(false)
   const reducedMotion = useReducedMotion()
+  const visibleText = reducedMotion ? texts[0] || "" : displayText
   const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null)
 
   useEffect(() => {
-    if (reducedMotion) {
-      setDisplayText(texts[0] || "")
+    if (reducedMotion || texts.length === 0) {
       return
     }
 
@@ -44,17 +44,17 @@ export function TypingText({
     }
 
     if (isDeleting) {
-      if (displayText === "") {
-        setIsDeleting(false)
-        setCurrentIndex((prev) => (prev + 1) % texts.length)
-      } else {
-        timeoutRef.current = setTimeout(() => {
-          setDisplayText(displayText.slice(0, -1))
-        }, deleteSpeed)
-      }
+      timeoutRef.current = setTimeout(() => {
+        const nextText = displayText.slice(0, -1)
+        setDisplayText(nextText)
+        if (nextText.length === 0) {
+          setIsDeleting(false)
+          setCurrentIndex((prev) => (prev + 1) % texts.length)
+        }
+      }, deleteSpeed)
     } else {
       if (displayText === currentText) {
-        setIsPaused(true)
+        timeoutRef.current = setTimeout(() => setIsPaused(true), 0)
       } else {
         timeoutRef.current = setTimeout(() => {
           setDisplayText(currentText.slice(0, displayText.length + 1))
@@ -70,7 +70,7 @@ export function TypingText({
   return (
     <span className={className}>
       <span className="text-[#06b6d4]">{prefix}</span>
-      <span>{displayText}</span>
+      <span>{visibleText}</span>
       <span className="animate-[cursorBlink_1s_step-end_infinite] text-[#06b6d4] ml-0.5">|</span>
     </span>
   )

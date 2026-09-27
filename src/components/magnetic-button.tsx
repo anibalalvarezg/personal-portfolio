@@ -1,6 +1,6 @@
 "use client"
 
-import { ReactNode, useRef } from "react"
+import { ReactNode } from "react"
 import { useMagneticEffect } from "@/hooks/use-magnetic-effect"
 import { cn } from "@/lib/utils"
 

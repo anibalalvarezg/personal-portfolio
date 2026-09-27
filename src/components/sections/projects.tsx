@@ -1,6 +1,6 @@
 "use client"
 
-import type { ReactNode, ComponentPropsWithoutRef } from "react"
+import type { ReactNode } from "react"
 import { useRef } from "react"
 import { motion, useInView } from "framer-motion"
 import { useLocalizedData } from "@/lib/use-localized-data"
