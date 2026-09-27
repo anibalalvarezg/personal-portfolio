@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState, useEffect, useRef } from "react"
 import { useI18n } from "@/lib/i18n"
 import { useScrollProgress } from "@/hooks/use-scroll-progress"
 import { useActiveSection } from "@/hooks/use-active-section"
@@ -20,17 +20,55 @@ export function Navbar() {
   ]
 
   const [isScrolled, setIsScrolled] = useState(false)
+  const [isHeaderVisible, setIsHeaderVisible] = useState(true)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
+  const navRef = useRef<HTMLElement>(null)
+  const lastScrollYRef = useRef(0)
+  const scrollDistanceRef = useRef(0)
+  const scrollDirectionRef = useRef(0)
   const progress = useScrollProgress()
   const activeSection = useActiveSection(navLinks.map((link) => link.href.slice(1)))
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50)
+      const scrollY = Math.max(0, window.scrollY)
+      const delta = scrollY - lastScrollYRef.current
+      lastScrollYRef.current = scrollY
+      setIsScrolled(scrollY > 50)
+
+      if (scrollY <= 80) {
+        scrollDistanceRef.current = 0
+        setIsHeaderVisible(true)
+        return
+      }
+
+      if (delta === 0) return
+
+      const direction = Math.sign(delta)
+      if (direction !== scrollDirectionRef.current) {
+        scrollDirectionRef.current = direction
+        scrollDistanceRef.current = 0
+      }
+
+      scrollDistanceRef.current += Math.abs(delta)
+      if (scrollDistanceRef.current < 12) return
+
+      if (direction < 0) {
+        setIsHeaderVisible(true)
+      } else if (!isMobileMenuOpen) {
+        const focusedElement = document.activeElement
+        const hasKeyboardFocus = navRef.current?.contains(focusedElement) &&
+          focusedElement?.matches(":focus-visible")
+
+        if (!hasKeyboardFocus) setIsHeaderVisible(false)
+      }
     }
+
+    lastScrollYRef.current = Math.max(0, window.scrollY)
     window.addEventListener("scroll", handleScroll, { passive: true })
+    handleScroll()
     return () => window.removeEventListener("scroll", handleScroll)
-  }, [])
+  }, [isMobileMenuOpen])
 
   const handleLinkClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     e.preventDefault()
@@ -43,7 +81,13 @@ export function Navbar() {
 
   return (
     <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+      ref={navRef}
+      onFocusCapture={() => setIsHeaderVisible(true)}
+      className={`fixed top-0 left-0 right-0 z-50 transition-[transform,background-color,box-shadow,opacity] duration-200 ease-out motion-reduce:transition-none ${
+        isHeaderVisible || isMobileMenuOpen
+          ? "translate-y-0 opacity-100"
+          : "-translate-y-full opacity-0 pointer-events-none"
+      } ${
         isScrolled 
           ? "glass shadow-[0_4px_30px_rgba(0,0,0,0.3)]" 
           : "bg-transparent"
