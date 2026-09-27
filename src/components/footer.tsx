@@ -32,20 +32,10 @@ export function Footer() {
     { href: `mailto:${email}`, label: "Email", external: false },
   ]
 
-  const handleLinkClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
-    if (href.startsWith("#")) {
-      e.preventDefault()
-      const element = document.querySelector(href)
-      if (element) {
-        element.scrollIntoView({ behavior: "smooth" })
-      }
-    }
-  }
-
   return (
-    <footer ref={footerRef} className="relative pt-24 pb-8 border-t border-[rgba(148,163,184,0.1)]">
+    <footer ref={footerRef} className="relative overflow-x-clip pt-24 pb-8 border-t border-[rgba(148,163,184,0.1)]">
       {/* Aurora glow */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-[rgba(6,182,212,0.05)] rounded-full blur-[120px] pointer-events-none" aria-hidden="true" />
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[min(800px,100vw)] h-[400px] bg-[rgba(6,182,212,0.05)] rounded-full blur-[120px] pointer-events-none" aria-hidden="true" />
 
       <div className="max-w-7xl mx-auto px-6 lg:px-8 relative">
         {/* Top section */}
@@ -58,11 +48,7 @@ export function Footer() {
           {/* Brand */}
           <div className="space-y-4">
             <a
-              href="#"
-              onClick={(e) => {
-                e.preventDefault()
-                window.scrollTo({ top: 0, behavior: "smooth" })
-              }}
+              href="#main-content"
               className="text-2xl font-bold tracking-tight text-[#e2e8f0] hover:text-[#06b6d4] transition-colors inline-block"
             >
               <span className="text-[#06b6d4]">&lt;</span>
@@ -70,7 +56,7 @@ export function Footer() {
               <span className="text-[#06b6d4]">/&gt;</span>
             </a>
             <p className="text-sm text-[#94a3b8] leading-relaxed">
-              Frontend Developer especializado en construir aplicaciones SaaS escalables y sistemas de scraping distribuidos.
+              {t("footer.summary")}
             </p>
             <p className="text-sm text-[#06b6d4]">
               {t("contact.available")}
@@ -80,14 +66,13 @@ export function Footer() {
           {/* Navigation */}
           <div>
             <h3 className="text-sm font-semibold text-[#e2e8f0] uppercase tracking-wider mb-4">
-              Navegación
+              {t("footer.navigation")}
             </h3>
             <ul className="space-y-2">
               {navLinks.map((link) => (
                 <li key={link.href}>
                   <a
                     href={link.href}
-                    onClick={(e) => handleLinkClick(e, link.href)}
                     className="text-sm text-[#94a3b8] hover:text-[#06b6d4] transition-colors inline-flex items-center gap-1 group"
                   >
                     {link.label}
@@ -101,7 +86,7 @@ export function Footer() {
           {/* Social */}
           <div>
             <h3 className="text-sm font-semibold text-[#e2e8f0] uppercase tracking-wider mb-4">
-              Social
+              {t("footer.social")}
             </h3>
             <ul className="space-y-2">
               {socialLinks.map((link) => (
@@ -131,7 +116,7 @@ export function Footer() {
           <p className="text-sm text-[#94a3b8]">
             © {currentYear} Aníbal Álvarez. {t("footer.rights")}
           </p>
-          <p className="text-xs text-[rgba(148,163,184,0.5)]">
+          <p className="text-xs text-[#94a3b8]">
             {t("footer.builtWith")}
           </p>
         </motion.div>

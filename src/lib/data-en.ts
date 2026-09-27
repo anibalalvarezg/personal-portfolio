@@ -71,8 +71,7 @@ export const projectsDataEn = [
     description: "Automated web scraping system that collects and structures guest reviews from 12+ OTA platforms in real time. Processes 50,000+ reviews/day using rotating proxies and AWS SQS queues.",
     stack: ["Python", "Scrapy", "Redis", "SQS", "AWS", "Docker"],
     icon: "scraping",
-    highlights: ["50,000+ reviews/day", "12+ OTA platforms", "Rotating proxies"],
-    link: "https://github.com/anibalalvarezg"
+    highlights: ["50,000+ reviews/day", "12+ OTA platforms", "Rotating proxies"]
   },
   {
     id: "miningtag-dashboards",
@@ -80,8 +79,7 @@ export const projectsDataEn = [
     description: "Interactive real-time dashboards for mining fleet monitoring. Shared monorepo with reusable components and updates via WebSockets.",
     stack: ["Angular 11+", "WebSockets", "RxJS", "Bootstrap", "SCSS"],
     icon: "dashboard",
-    highlights: ["Real-time", "WebSockets", "Monorepo"],
-    link: "https://github.com/anibalalvarezg"
+    highlights: ["Real-time", "WebSockets", "Monorepo"]
   },
   {
     id: "readiness-bff",
@@ -89,8 +87,7 @@ export const projectsDataEn = [
     description: "Backend for Frontend optimizing communication between Angular applications and legacy telecommunications services. Decoupled and scalable architecture.",
     stack: ["Angular 8+", "Node.js", "Ericsson EOC", "Bootstrap"],
     icon: "architecture",
-    highlights: ["Decoupled architecture", "Scalable", "Ericsson EOC"],
-    link: "https://github.com/anibalalvarezg"
+    highlights: ["Decoupled architecture", "Scalable", "Ericsson EOC"]
   }
 ];
 

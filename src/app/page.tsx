@@ -7,12 +7,10 @@ import { About } from "@/components/sections/about"
 import { Contact } from "@/components/sections/contact"
 import { Footer } from "@/components/footer"
 import { ClientShell } from "@/components/client-shell"
-import { SkipToContent } from "@/components/skip-to-content"
 
 export default function Home() {
   return (
     <>
-      <SkipToContent />
       <ClientShell>
         <main id="main-content">
           <Hero />

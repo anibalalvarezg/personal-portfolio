@@ -1,45 +1,20 @@
 "use client"
 
-import { useRef, useEffect } from "react"
 import { motion } from "framer-motion"
-import { gsap } from "gsap"
-import { ScrollTrigger } from "gsap/ScrollTrigger"
 import { HeroCanvas } from "@/components/hero-canvas"
 import { MagneticButton } from "@/components/magnetic-button"
 import { TypingText } from "@/components/typing-text"
+import { useIntroComplete } from "@/components/intro-context"
 import { useLocalizedData } from "@/lib/use-localized-data"
 import { useI18n } from "@/lib/i18n"
 import { useReducedMotion } from "@/hooks/use-reduced-motion"
 import { Download, ArrowRight, ChevronDown } from "lucide-react"
 
-gsap.registerPlugin(ScrollTrigger)
-
 export function Hero() {
   const { personalData, skillsTyping } = useLocalizedData()
   const { t } = useI18n()
-  const sectionRef = useRef<HTMLElement>(null)
-  const titleRef = useRef<HTMLHeadingElement>(null)
   const reducedMotion = useReducedMotion()
-
-  useEffect(() => {
-    if (reducedMotion || !titleRef.current) return
-
-    const context = gsap.context(() => {
-      gsap.fromTo(
-        titleRef.current,
-        { y: 60, opacity: 0 },
-        {
-          y: 0,
-          opacity: 1,
-          duration: 1.2,
-          ease: "power4.out",
-          delay: 0.3,
-        },
-      )
-    }, sectionRef)
-
-    return () => context.revert()
-  }, [reducedMotion])
+  const introVisible = useIntroComplete() || reducedMotion
 
   const handleScrollToProjects = () => {
     const element = document.querySelector("#proyectos")
@@ -59,7 +34,6 @@ export function Hero() {
 
   return (
     <section
-      ref={sectionRef}
       className="relative min-h-[100dvh] flex items-center justify-center overflow-hidden"
       aria-label="Hero"
     >
@@ -72,9 +46,9 @@ export function Hero() {
       {/* Content */}
       <div className="relative z-10 max-w-5xl mx-auto px-6 text-center">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+          initial={false}
+          animate={introVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+          transition={{ duration: reducedMotion ? 0 : 0.7, ease: [0.22, 1, 0.36, 1] }}
           className="mb-6"
         >
           <span className="inline-block px-4 py-2 rounded-full text-xs font-medium bg-[rgba(6,182,212,0.1)] text-[#06b6d4] border border-[rgba(6,182,212,0.2)]">
@@ -82,17 +56,19 @@ export function Hero() {
           </span>
         </motion.div>
 
-        <h1
-          ref={titleRef}
+        <motion.h1
+          initial={false}
+          animate={introVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: 48 }}
+          transition={{ duration: reducedMotion ? 0 : 1, delay: reducedMotion ? 0 : 0.08, ease: [0.22, 1, 0.36, 1] }}
           className="text-[clamp(2.5rem,8vw,7rem)] font-bold leading-[1.1] tracking-tighter mb-6 text-[#e2e8f0]"
         >
           {personalData.name}
-        </h1>
+        </motion.h1>
 
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
+          initial={false}
+          animate={introVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+          transition={{ duration: reducedMotion ? 0 : 0.7, delay: reducedMotion ? 0 : 0.18, ease: [0.22, 1, 0.36, 1] }}
           className="mb-4"
         >
           <p className="text-lg md:text-xl text-[#94a3b8] font-medium">
@@ -101,20 +77,20 @@ export function Hero() {
         </motion.div>
 
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.6, ease: [0.22, 1, 0.36, 1] }}
+          initial={false}
+          animate={introVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+          transition={{ duration: reducedMotion ? 0 : 0.7, delay: reducedMotion ? 0 : 0.28, ease: [0.22, 1, 0.36, 1] }}
           className="mb-10"
         >
           <div className="inline-block px-4 py-3 rounded-lg bg-[rgba(15,23,42,0.8)] border border-[rgba(148,163,184,0.1)] font-mono text-sm md:text-base text-[#94a3b8]">
-            <TypingText texts={skillsTyping} />
+            {introVisible && <TypingText texts={skillsTyping} />}
           </div>
         </motion.div>
 
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.8, ease: [0.22, 1, 0.36, 1] }}
+          initial={false}
+          animate={introVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+          transition={{ duration: reducedMotion ? 0 : 0.7, delay: reducedMotion ? 0 : 0.38, ease: [0.22, 1, 0.36, 1] }}
           className="flex flex-col sm:flex-row items-center justify-center gap-4"
         >
           <MagneticButton variant="primary" onClick={handleDownloadCV} ariaLabel={t("hero.ctaCv")}>
@@ -131,9 +107,9 @@ export function Hero() {
 
       {/* Scroll indicator */}
       <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1.5, duration: 0.8 }}
+        initial={false}
+        animate={{ opacity: introVisible ? 1 : 0 }}
+        transition={{ delay: reducedMotion ? 0 : 0.85, duration: reducedMotion ? 0 : 0.6 }}
         className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10"
       >
         <button

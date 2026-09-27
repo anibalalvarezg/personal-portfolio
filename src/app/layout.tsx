@@ -4,6 +4,7 @@ import "@/app/globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import { ReducedMotionProvider } from "@/components/reduced-motion-provider";
 import { I18nProvider } from "@/lib/i18n";
+import { siteUrl } from "@/lib/site";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 
@@ -30,7 +31,7 @@ const spaceGrotesk = localFont({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || "https://anibalalvarez.dev"),
+  metadataBase: new URL(siteUrl),
   title: {
     default: "Aníbal Álvarez | Ingeniero Civil en Informática",
     template: "%s | Aníbal Álvarez"
@@ -57,10 +58,6 @@ export const metadata: Metadata = {
   },
   alternates: {
     canonical: "/",
-    languages: {
-      "es-CL": "/",
-      "en-US": "/",
-    },
   },
   openGraph: {
     type: "website",

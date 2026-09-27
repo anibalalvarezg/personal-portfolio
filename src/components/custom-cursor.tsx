@@ -15,6 +15,8 @@ export function CustomCursor() {
     const isMobile = window.matchMedia("(hover: none) and (pointer: coarse)").matches
     if (isMobile) return
 
+    document.documentElement.classList.add("custom-cursor-enabled")
+
     const handleMouseMove = (e: MouseEvent) => {
       setIsVisible(true)
       if (cursorRef.current) {
@@ -46,6 +48,7 @@ export function CustomCursor() {
     document.addEventListener("mouseout", handleMouseOut)
 
     return () => {
+      document.documentElement.classList.remove("custom-cursor-enabled")
       window.removeEventListener("mousemove", handleMouseMove)
       document.removeEventListener("mouseenter", handleMouseEnter)
       document.removeEventListener("mouseleave", handleMouseLeave)

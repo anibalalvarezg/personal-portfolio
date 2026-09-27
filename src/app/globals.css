@@ -174,11 +174,8 @@
   
   /* Cursor reset for custom cursor - only on desktop */
   @media (hover: hover) and (pointer: fine) {
-    * {
-      cursor: none;
-    }
-    
-    a, button, [role="button"] {
+    .custom-cursor-enabled,
+    .custom-cursor-enabled * {
       cursor: none;
     }
   }
@@ -280,6 +277,18 @@
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
+  }
+}
+
+/* If hydration fails, the introductory cover must still clear. */
+.intro-loader {
+  animation: intro-loader-failsafe 0s linear 8s forwards;
+}
+
+@keyframes intro-loader-failsafe {
+  to {
+    visibility: hidden;
+    pointer-events: none;
   }
 }
 

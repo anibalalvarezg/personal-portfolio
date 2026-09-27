@@ -40,8 +40,8 @@ export function MagneticButton({
         href={href}
         className={combinedClassName}
         aria-label={ariaLabel}
-        target="_blank"
-        rel="noopener noreferrer"
+        target={href.startsWith("mailto:") ? undefined : "_blank"}
+        rel={href.startsWith("mailto:") ? undefined : "noopener noreferrer"}
       >
         {children}
       </a>

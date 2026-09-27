@@ -70,13 +70,8 @@ export function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll)
   }, [isMobileMenuOpen])
 
-  const handleLinkClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
-    e.preventDefault()
+  const handleLinkClick = () => {
     setIsMobileMenuOpen(false)
-    const element = document.querySelector(href)
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth" })
-    }
   }
 
   return (
@@ -93,7 +88,7 @@ export function Navbar() {
           : "bg-transparent"
       }`}
       role="navigation"
-      aria-label="Main navigation"
+      aria-label={t("nav.label")}
     >
       {/* Scroll progress indicator */}
       <div className="absolute bottom-0 left-0 right-0 h-[1px] bg-[rgba(148,163,184,0.1)]">
@@ -107,11 +102,10 @@ export function Navbar() {
         <div className="flex items-center justify-between h-16 lg:h-20">
           {/* Logo / Name */}
           <a 
-            href="#" 
+            href="#main-content"
             className="text-lg font-bold tracking-tight text-[#e2e8f0] hover:text-[#06b6d4] transition-colors"
-            onClick={(e) => {
-              e.preventDefault()
-              window.scrollTo({ top: 0, behavior: "smooth" })
+            onClick={() => {
+              setIsMobileMenuOpen(false)
             }}
           >
             <span className="text-[#06b6d4]">&lt;</span>
@@ -125,7 +119,7 @@ export function Navbar() {
               <a
                 key={link.href}
                 href={link.href}
-                onClick={(e) => handleLinkClick(e, link.href)}
+                onClick={handleLinkClick}
                 aria-current={activeSection === link.href.slice(1) ? "page" : undefined}
                 className={`text-sm transition-colors relative group ${
                   activeSection === link.href.slice(1)
@@ -151,6 +145,7 @@ export function Navbar() {
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
               aria-label={isMobileMenuOpen ? t("nav.closeMenu") : t("nav.openMenu")}
               aria-expanded={isMobileMenuOpen}
+              aria-controls="mobile-navigation"
             >
               {isMobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
             </button>
@@ -160,8 +155,11 @@ export function Navbar() {
 
       {/* Mobile Menu */}
       <div
-        className={`lg:hidden absolute top-full left-0 right-0 glass border-t border-[rgba(148,163,184,0.1)] overflow-hidden transition-all duration-500 ${
-          isMobileMenuOpen ? "max-h-[300px] opacity-100" : "max-h-0 opacity-0"
+        id="mobile-navigation"
+        aria-hidden={!isMobileMenuOpen}
+        inert={!isMobileMenuOpen}
+        className={`lg:hidden absolute top-full left-0 right-0 glass border-t border-[rgba(148,163,184,0.1)] overflow-y-auto overflow-x-hidden transition-all duration-500 ${
+          isMobileMenuOpen ? "max-h-[calc(100dvh-4rem)] opacity-100" : "max-h-0 opacity-0"
         }`}
       >
         <div className="px-6 py-4 space-y-2">
@@ -169,7 +167,7 @@ export function Navbar() {
             <a
               key={link.href}
               href={link.href}
-              onClick={(e) => handleLinkClick(e, link.href)}
+              onClick={handleLinkClick}
               className="block py-3 text-sm text-[#94a3b8] hover:text-[#06b6d4] transition-colors border-b border-[rgba(148,163,184,0.05)]"
             >
               {link.label}

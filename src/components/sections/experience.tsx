@@ -6,17 +6,22 @@ import { useLocalizedData } from "@/lib/use-localized-data"
 import { useI18n } from "@/lib/i18n"
 import { Badge } from "@/components/ui/badge"
 import { gsap } from "gsap"
+import { ScrollTrigger } from "gsap/ScrollTrigger"
 import { highlightTechnologies } from "@/lib/highlight-tech"
+import { useReducedMotion } from "@/hooks/use-reduced-motion"
+
+gsap.registerPlugin(ScrollTrigger)
 
 export function Experience() {
   const { professionalExperience } = useLocalizedData()
   const { t } = useI18n()
+  const reducedMotion = useReducedMotion()
   const sectionRef = useRef<HTMLElement>(null)
   const isInView = useInView(sectionRef, { once: true, margin: "-100px" })
   const timelineRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
-    if (!timelineRef.current) return
+    if (reducedMotion || !timelineRef.current) return
 
     const context = gsap.context(() => {
       const items = timelineRef.current?.querySelectorAll(".timeline-item") ?? []
@@ -38,7 +43,7 @@ export function Experience() {
     }, timelineRef)
 
     return () => context.revert()
-  }, [])
+  }, [reducedMotion])
 
   return (
     <section

@@ -6,6 +6,7 @@
     "experience": "Experiencia",
     "about": "Sobre mí",
     "contact": "Contacto",
+    "label": "Navegación principal",
     "openMenu": "Abrir menú",
     "closeMenu": "Cerrar menú"
   },
@@ -46,6 +47,7 @@
     "email": "Enviar correo a {email}",
     "linkedin": "Ver perfil de LinkedIn en {url}",
     "phone": "Llamar al {phone}",
+    "github": "Ver perfil de GitHub en {url}",
     "getInTouch": "Ponte en contacto",
     "available": "Disponible para nuevas oportunidades"
   },
@@ -62,8 +64,14 @@
     "english": "Cambiar a inglés"
   },
   "footer": {
+    "navigation": "Navegación",
+    "social": "Redes sociales",
+    "summary": "Desarrollador frontend especializado en construir aplicaciones SaaS escalables y sistemas de scraping distribuidos.",
     "rights": "Todos los derechos reservados.",
     "builtWith": "Construido con Next.js, TailwindCSS, GSAP & Framer Motion"
   },
-  "skipToContent": "Saltar al contenido principal"
+  "skipToContent": "Saltar al contenido principal",
+  "loader": {
+    "loading": "Cargando portafolio"
+  }
 }

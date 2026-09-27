@@ -1,22 +1,15 @@
 import { MetadataRoute } from 'next'
+import { siteUrl } from '@/lib/site'
 
 export const dynamic = 'force-static'
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://mi-portfolio.com'
-  
   return [
     {
-      url: baseUrl,
+      url: siteUrl,
       lastModified: new Date(),
       changeFrequency: 'monthly',
       priority: 1,
-      alternates: {
-        languages: {
-          es: `${baseUrl}`,
-          en: `${baseUrl}`,
-        },
-      },
     },
   ]
 }

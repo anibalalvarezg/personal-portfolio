@@ -6,6 +6,7 @@
     "experience": "Experience",
     "about": "About",
     "contact": "Contact",
+    "label": "Main navigation",
     "openMenu": "Open menu",
     "closeMenu": "Close menu"
   },
@@ -46,6 +47,7 @@
     "email": "Send email to {email}",
     "linkedin": "View LinkedIn profile at {url}",
     "phone": "Call {phone}",
+    "github": "View GitHub profile at {url}",
     "getInTouch": "Get in touch",
     "available": "Available for new opportunities"
   },
@@ -62,8 +64,14 @@
     "english": "Switch to English"
   },
   "footer": {
+    "navigation": "Navigation",
+    "social": "Social",
+    "summary": "Frontend developer specializing in scalable SaaS applications and distributed scraping systems.",
     "rights": "All rights reserved.",
     "builtWith": "Built with Next.js, TailwindCSS, GSAP & Framer Motion"
   },
-  "skipToContent": "Skip to main content"
+  "skipToContent": "Skip to main content",
+  "loader": {
+    "loading": "Loading portfolio"
+  }
 }
